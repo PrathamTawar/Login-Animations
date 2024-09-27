@@ -42,6 +42,11 @@ main
     animation: open var(--time-slow) both;
 }
 
+.reverse
+{
+    animation-direction: reverse;
+}
+
 @keyframes open 
 {
     0%
@@ -82,10 +87,10 @@ main
     top: 50%;
     transform: translate(-50%, -50%);
     
-    background-color: aqua;
+    background-color: var(--primary-color);
     border-radius: 50%;
     
-    animation: logoAnimations var(--time-slow) both;
+    /* animation: logoAnimations var(--time-fast) both; */
 }
 
 
@@ -93,10 +98,16 @@ main
 {
     0%
     {
+        display: block;
         opacity: 1;
         transform: rotate(0deg);
     }
 
+    50%
+    {
+        background-color: transparent;
+    }
+    
     100%
     {
         top: 0px;
