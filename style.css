@@ -22,6 +22,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    user-select: none;
 }
 
 main
@@ -30,6 +31,8 @@ main
     width: 100%;
     display: flex;
     flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
     position: relative;
 
@@ -38,13 +41,6 @@ main
     background-position: center;
 
     border-radius: 36px;
-
-    animation: open var(--time-slow) both;
-}
-
-.reverse
-{
-    animation-direction: reverse;
 }
 
 @keyframes open 
@@ -54,6 +50,7 @@ main
         height: 0;
         width: 0;
     }
+
     100% 
     {
         height: 100%;
@@ -86,10 +83,10 @@ main
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    
+    display: none;
     background-color: var(--primary-color);
     border-radius: 50%;
-    
+    z-index: 100;
     /* animation: logoAnimations var(--time-fast) both; */
 }
 
@@ -98,7 +95,6 @@ main
 {
     0%
     {
-        display: block;
         opacity: 1;
         transform: rotate(0deg);
     }
@@ -112,11 +108,28 @@ main
     {
         top: 0px;
         left: 40px;
-        display: none;
         transform: rotate(360deg);
+        display: block;
+        background: none;
     }
 }
 
+@keyframes logoAnimationsEnd {
+
+    0%
+    {
+        top: -30px;
+        left: 20px;
+        transform: rotate(0deg);
+    }
+    
+    100%
+    {
+        transform: rotate(360deg) translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+    }
+}
 
 /* *--------------------login----------------------- */
 
@@ -132,6 +145,7 @@ main
     overflow: hidden;
     background-color: var(--primary-color);
     display: none;
+    z-index: 1;
 
     /* animation: appearRight var(--time-slow) both ; */
 }
@@ -158,30 +172,120 @@ nav
     align-items: center;
 }
 
-nav ul
+.navUl
 {
     /* border: solid blue; */
     display: flex;
     align-items: center;
     gap: 1rem;
     list-style: none;
+    /* overflow: hidden; */
+}
+
+.navLi
+{
+    animation: transformLeft var(--time-slow) both;
 }
 
 
-nav ul li:first-of-type
+.navLi:first-of-type
 {
     color: gray;
     user-select: none;
     cursor: pointer;
 }
 
-nav ul li:last-of-type
+.navLi:last-of-type
 {
     padding: 10px;
     border-radius: 36px;
     color: var(--accent-color);
     border: solid 2px var(--accent-color);
     font-weight: 550;
+}
+
+.name
+{
+    overflow: hidden;
+}
+
+.name h3, .name p 
+{
+    animation: transformRight var(--time-fast) ease-in;
+}
+
+.dropdown-content {
+    display: none;
+    left: -200%;
+    top: 150%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.613);
+    max-width: 500px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 100;
+    overflow: hidden;
+    transition: var(--time-slow) both;
+}
+
+.enroll:hover .dropdown-content {
+    display: block; 
+}
+
+
+.dropdownUl
+{
+    list-style: none;
+    line-height: 2rem;
+    font-size: 0.9rem;
+    z-index: 10000;
+    color: white;
+}
+
+
+.dropdownLi
+{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dropdownLi div
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    color: var(--accent-color);
+    background-color: rgba(87, 157, 47, 0.147);
+}
+
+@keyframes transformLeft 
+{
+    from
+    {
+        transform: translateX(100%);
+    }    
+
+    to
+    {
+        transform: translateX(-2px);
+    }
+}
+
+@keyframes transformRight 
+{
+    from
+    {
+        transform: translateX(-100%);
+    }    
+
+    to
+    {
+        transform: translateX(0);
+    }
 }
 
 /* !------------------nav-over-------------------- */
@@ -204,6 +308,7 @@ nav ul li:last-of-type
     width: 60%;
     gap: 1rem;
     
+    z-index: inherit;
     animation: slideUp var(--time-fast) both;
 }
 
@@ -278,16 +383,63 @@ nav ul li:last-of-type
     top: 30%;
 }
 
-
-
 .loginBtn
 {
     padding: 20px;
+    height: 60px;
     border-radius: 36px;
     border: none;
     background-color: var(--gray);
     color: white;
+    position: relative;
 }
+
+.loading
+{
+    width: 1rem;
+    position: absolute;
+    display: none;
+}
+
+.loadingAnime
+{
+    display: block !important;
+    animation: loading var(--time-fast) both;
+}
+
+.loginPAnime
+{
+    animation: pRight var(--time-fast) both;
+}
+
+@keyframes loading
+{
+    from
+    {
+        left: 0;
+        display: block;
+    }
+    to
+    {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes pRight 
+{
+    from
+    {
+        display: block;
+    }
+    to
+    {
+        display: none;
+        transform: translateX(100%);
+    }
+}
+
+
 
 .active
 {
@@ -324,6 +476,7 @@ nav ul li:last-of-type
     text-align: center;
     line-height: 20px;
 }
+
 
 
 .forgotPassword
@@ -413,6 +566,7 @@ nav ul li:last-of-type
         height: 0;
         width: 0;
         display: none;
+        box-shadow: 0px 0px 0px 100000px white;
     }
 }
 

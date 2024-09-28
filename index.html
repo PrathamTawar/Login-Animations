@@ -22,7 +22,7 @@
 
             <nav>
                 <div class="navLogo">
-                    <img class="logoImg" src="./assets/logo.png" alt="">
+                    <img style="opacity: 0;" class="logoImg" src="./assets/logo.png" alt="">
                     
                     <div class="name fadeable">
                         <h3>REGIONS</h3>
@@ -30,9 +30,28 @@
                     </div>
                 </div>
 
-                <ul class="fadeable">
-                    <li>Are you a new customer?</li>
-                    <li class="enroll ">Enroll Now</li>
+                <ul class=" navUl fadeable">
+                    <li class="navLi">Are you a new customer?</li>
+                    <li class="navLi enroll">
+                        Enroll Now
+                        <div class="dropdown-content">
+                            <ul class="dropdownUl">
+                                <p>Enroll now to:</p>
+                                <li class="dropdownLi">
+                                    <div><p>&#10003;</p></div>
+                                    <p>Access Your loans online</p>
+                                </li>
+                                <li class="dropdownLi">
+                                    <div><p>&#10003;</p></div>
+                                    <p>Pay your mortgage online</p>
+                                </li>
+                                <li class="dropdownLi">
+                                    <div><p>&#10003;</p></div>
+                                    <p>View your mortgage statements</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                 </ul>
             </nav>
 
@@ -58,7 +77,10 @@
                             <label for="checkbox">Remember me</label>
                         </div>
 
-                        <button class="loginBtn" type="submit">Login</button> 
+                        <button class="loginBtn" type="submit">
+                            <img class="loading" src="./assets/loading-gif.gif" alt="">
+                            <p class="loginP">Login</p>
+                        </button> 
                 </form>
 
                 <div class="forgotPassword">

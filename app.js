@@ -8,32 +8,56 @@ const loginForm = document.querySelector('.loginForm');
 const btn = document.querySelector('.loginBtn');
 const fadeables = document.querySelectorAll('.fadeable');
 const inputs = document.querySelectorAll('.inpts');
+const loading = document.querySelector('.loading');
+const loginP = document.querySelector('.loginP');
 
 window.onload = () => {
+
+    main.style.animation = 'open var(--time-slow) both';
+
+    setTimeout(() => {
+        logo.style.display = 'block';
+        logo.style.animation = 'logoAnimations var(--time-fast) both';
+        
+    }, 700);
+
     setTimeout(() => {
         loginSectionsContainer.style.animation = 'appearRight var(--time-fast) both';
         loginSectionsContainer.style.display = 'flex';
-        logo.style.animation = 'logoAnimations var(--time-fast) both';
-
-    },700)
+    },1000);
 }
 
 loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    logo.classList.toggle('reverse')
-    loginFromContainer.style.animation = 'fadeDown var(--time-fast) both';
-    footer.style.animation = 'fadeDown var(--time-fast) both';
+    loginP.classList.toggle('loginPAnime');
+    loading.classList.toggle('loadingAnime');
 
-    bg.style.animation = 'slideRight var(--time-slow) both';
-    // loginSectionsContainer.style.animation = 'slideLeft var(--time) both';
 
-    fadeables.forEach((fadeable) => {
-        fadeable.style.animation = '';
-        fadeable.style.animation = 'fadeLeft var(--time-fast) both';
-    })
+    setInterval(() => {
+       bg.style.animation = 'close var(--time-slow) both' 
+       
+       fadeables.forEach((fadeable) => {
+            fadeable.style.animation = '';
+            fadeable.style.animation = 'fadeLeft var(--time-fast) both';
+            loginFromContainer.style.animation = 'fadeDown var(--time-fast) both';
+            footer.style.animation = 'fadeDown var(--time-fast) both';
+        })
+
+
+    }, 500)
+
+
+    setInterval(() => {
+        logo.style.animation = 'logoAnimationsEnd var(--time-slow) both'
+    }, 1500);
 
 })
+
+
+
+
+
 
 function notEmpty()
 {
